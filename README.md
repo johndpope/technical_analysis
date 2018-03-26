@@ -25,3 +25,4 @@ metrics. <br>
 <i>RSI vs Returns</i><br>
 ![](./images/rsi.png)
 <br>
+<img src="./images/candlestick.png" width="48">
