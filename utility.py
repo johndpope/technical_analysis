@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
-from matplotlib.finance import candlestick2_ohlc
+#from matplotlib.finance import candlestick2_ohlc
 from bokeh.layouts import gridplot
 from bokeh.models import Arrow, OpenHead, NormalHead, VeeHead
 from bokeh.plotting import figure, show, output_file

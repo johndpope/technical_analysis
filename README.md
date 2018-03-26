@@ -1,10 +1,13 @@
-# FinancialAnalysis
+# technical_analysis
 
-Some preliminary projects
-- Exploring Dow Jones Components
-- Modules for analyzing returns
-- Scraping biotech/pharama information
-- Technical analysis tools
+Goal of this project is to assess utility of widely used technical analysis
+metrics. <br>
+<br>
+- Moving Average Crosses
+- MACD
+- Bollinger Bands
+- CCI
+- RSI
 
 <b>Image Gallery</b><br>
 <i>Candlestick Chart</i><br>
@@ -18,4 +21,7 @@ Some preliminary projects
 <br>
 <i>Moving Average Crosses</i><br>
 ![](./images/ma_crosses.png)
+<br>
+<i>RSI vs Returns</i><br>
+![](./images/rsi.png)
 <br>

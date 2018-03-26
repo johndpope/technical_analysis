@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
-from matplotlib.finance import candlestick2_ohlc
+#from matplotlib.finance import candlestick2_ohlc
 from bokeh.layouts import gridplot
 from bokeh.models import Arrow, OpenHead, NormalHead, VeeHead
 from bokeh.plotting import figure, show, output_file
@@ -178,9 +178,51 @@ class TechnicalAnalysisCase(CoreData):
         self.indicator_columns.append('MACD_cross')
         return
 
+    def add_RSI(self, rsi_period=14):
+        self.rsi_period = rsi_period
+        label_stem = 'RSI' + str(rsi_period) +'_'
+        self.data[label_stem + 'change'] = \
+            self.data['close'] - self.data['close'].shift(1)
+        self.data[label_stem + 'ave_gain'] = 0
+        self.data[label_stem + 'ave_loss'] = 0
 
+        counter = rsi_period - 1
+        first_subset = self.data.iloc[:rsi_period]
+        inc = first_subset[label_stem + 'change'] >= 0
+        dec = first_subset[label_stem + 'change'] < 0
+        ind = self.data.index[counter]
+        self.data.loc[ind, label_stem + 'ave_gain'] = \
+                first_subset[label_stem + 'change'][inc].sum() / rsi_period
+        self.data.loc[ind, label_stem + 'ave_loss'] = \
+                (-1)*first_subset[label_stem + 'change'][dec].sum() / rsi_period
+        counter += 1
 
+        while counter < len(self.data):
+            subset = self.data.iloc[(counter-rsi_period + 1):counter+1]
+            ind = self.data.index[counter]
 
+            if self.data.iloc[counter][label_stem + 'change'] >=0:
+                current_gain = self.data.iloc[counter][label_stem + 'change']
+                current_loss = 0
+            else:
+                current_gain = 0
+                current_loss = (-1)*self.data.iloc[counter][label_stem + 'change']
+            previous_ave_gain = self.data.iloc[counter-1][label_stem + 'ave_gain']
+            previous_ave_loss = self.data.iloc[counter-1][label_stem + 'ave_loss']
+
+            self.data.loc[ind, label_stem + 'ave_gain'] = \
+                (previous_ave_gain * (rsi_period -1) + current_gain)/rsi_period
+            self.data.loc[ind, label_stem + 'ave_loss'] = \
+                (previous_ave_loss * (rsi_period -1) + current_loss)/rsi_period
+
+            counter += 1
+
+        def calculate_RSI(RS):
+            RSI = 100 - (100 / (1 + RS))
+            return RSI
+            
+        self.data['RS'] = self.data[label_stem + 'ave_gain'] / self.data[label_stem + 'ave_loss']
+        self.data['RSI']  = self.data['RS'].apply(calculate_RSI)
 
 
 
