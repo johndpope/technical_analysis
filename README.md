@@ -11,18 +11,17 @@ metrics. <br>
 
 <b>Image Gallery</b><br>
 <i>Candlestick Chart</i><br>
-![](./images/candlestick.png)
+<img src="./images/candlestick.png" width="400">
 <br>
 <i>Bollinger Bands</i><br>
-![](./images/bollinger.png)
+<img src="./images/bollinger.png" width="400">
 <br>
 <i>MACD</i><br>
-![](./images/macd.png)
+<img src="./images/macd.png" width="400">
 <br>
 <i>Moving Average Crosses</i><br>
-![](./images/ma_crosses.png)
+<img src="./images/ma_crosses.png" width="400">
 <br>
 <i>RSI vs Returns</i><br>
-![](./images/rsi.png)
+<img src="./images/rsi.png" width="400">
 <br>
-<img src="./images/candlestick.png" width="48">
