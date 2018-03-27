@@ -140,12 +140,16 @@ def eval_metric_performance(series, metric_col, eval_periods=[1,5,10]):
     metric_name = metric_col.name
 
     for period in eval_periods:
-        signal_indices = [i
+        signal_indices = [
+            i
             for i in df[(df[metric_name] == 1) | (df[metric_name] == -1)].index
-            if (i+period) in df.index]
-        return_indices = [i+period
+            if (i+period) in df.index
+            ]
+        return_indices = [
+            i+period
             for i in signal_indices
-            if (i+period) in df.index]
+            if (i+period) in df.index
+            ]
 
         period_returns = 100*((np.array(df.loc[return_indices, series_name])\
                             / np.array(df.loc[signal_indices, series_name])) -1)
